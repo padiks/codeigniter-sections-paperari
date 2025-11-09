@@ -70,8 +70,8 @@ It uses the beautiful **[PaperCSS](https://www.papercss.com/)** template for a c
 
 ## 4️⃣ Static Pages
 
-* Place a folder under `/application/views/` (e.g., `/lorem-ipsum/`).
-* Access via `/page/lorem-ipsum/` or `/page/lorem-ipsum/file.php`.
+* Place a folder under `/application/views/staic/` (e.g., `column.php, calculator.php`).
+* Access via (e.g., `/page/static/column` or `/page/static/calculator`).
 * Runs **without header/footer**, fully standalone.
 * Works consistently on Windows and Debian.
 
