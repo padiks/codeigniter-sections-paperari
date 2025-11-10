@@ -12,7 +12,7 @@ It uses **[PaperCSS](https://www.papercss.com/)** template for a clean, minimal 
 * Organizes content into volumes and chapters using Markdown.
 * Flexible base templates: header, footer, and hero section.
 * Static folder for CSS, JS, and images.
-* Optional pages without header/footer using `Page.php`.
+* Optional static/standalone pages without header/footer using `Page.php`.
 * Site-wide search and sitemap across all defined sections.
 * Stateless password protection using a single cookie (`access_token`).
 * Dark/light mode, clean Markdown rendering, and optional TOC/prev-next navigation.
