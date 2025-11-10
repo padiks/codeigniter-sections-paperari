@@ -37,7 +37,8 @@ It uses the beautiful **[PaperCSS](https://www.papercss.com/)** template for a c
 | `Errors.php`                  | Custom 404 handler (`page_missing()`).                                       |
 | `Search.php`                  | Site-wide search page across all sections.                                   |
 | `Sitemap.php`                 | Sitemap page showing all sections and items.                                 |
-| `Auth.php`                    | Password-protects the site using a stateless cookie.                         |
+| `Auth.php`                    | Password-protects the site using a stateless cookie. The default             |
+|                               |   password is set to "q", and it can be changed in the `Auth.php` file.      |
 
 ---
 
