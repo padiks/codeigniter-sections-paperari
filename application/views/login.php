@@ -7,7 +7,7 @@
 
   <form method="post">
     <label>ぱすわーど</label><br>
-    <input type="password" name="password" style="width:100%; padding:0.5em;" autofocus required><br><br>
+    <input type="password" placeholder="q" name="password" style="width:100%; padding:0.5em;" autofocus required><br><br>
     <button type="submit" style="padding:0.5em 1em;">ろぐいん</button>
   </form>
 </div>

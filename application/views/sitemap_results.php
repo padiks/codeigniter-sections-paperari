@@ -24,9 +24,16 @@
                 <ul>
                 <?php foreach ($chapters as $chapter): ?>
                     <li>
-                        <a href="<?= site_url(str_replace('.md','', str_replace('.txt','',$chapter['path']))); ?>">
-                            <?= htmlspecialchars($chapter['name']); ?>
-                        </a>
+                        <?php 
+                            // If it's README.md, treat it as a folder (no file URL)
+                            if (strtolower($chapter['name']) === 'readme') {
+                                $folderPath = htmlspecialchars(implode('/', array_slice($chapter['full_parts'], 0, count($chapter['full_parts']) - 1)));
+                                echo '<a href="' . site_url($folderPath) . '">' . $folderPath . '</a>';
+                            } else {
+                                // Normal file URL
+                                echo '<a href="' . site_url(str_replace('.md', '', str_replace('.txt', '', $chapter['path']))) . '">' . htmlspecialchars($chapter['name']) . '</a>';
+                            }
+                        ?>
                     </li>
                 <?php endforeach; ?>
                 </ul>
