@@ -1,6 +1,4 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Sitemap extends CI_Controller {
 
     public function __construct()
@@ -14,15 +12,16 @@ class Sitemap extends CI_Controller {
         if (!isset($_COOKIE['access_token']) || $_COOKIE['access_token'] !== 'ok') {
             redirect('login');
         }
-    }   
+    }
 
     public function index()
     {
+        $data['title'] = 'Sitemap';
         // Define your top-level sections manually
         $sections = ['books', 'tutorials', 'lyrics'];
 
         $results = [];
-
+        
         foreach ($sections as $section) {
             $section_path = APPPATH . 'views/' . $section;
             if (!is_dir($section_path)) continue;
@@ -41,6 +40,11 @@ class Sitemap extends CI_Controller {
 
                 // First part is always section, second is book
                 $book = isset($parts[1]) ? $parts[1] : $parts[0];
+
+                // If it's README.md, treat it as a folder (remove .md from the URL)
+                if (strtolower($name) === 'readme') {
+                    $relative_path = implode('/', $parts); // Just the folder path without README.md
+                }
 
                 $results[] = [
                     'section' => $section,
