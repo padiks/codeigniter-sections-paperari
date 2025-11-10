@@ -5,7 +5,6 @@ class Sitemap extends CI_Controller {
     {
         parent::__construct();
         $this->load->helper('url');
-        $this->load->helper('markdown');
         $this->load->helper('file');
 
         // Password protection
@@ -26,32 +25,17 @@ class Sitemap extends CI_Controller {
             $section_path = APPPATH . 'views/' . $section;
             if (!is_dir($section_path)) continue;
 
-            // Recursively get all .md or .txt files
-            $files = $this->get_files_recursive($section_path);
+            // Get only the directories (folders), no files
+            $folders = $this->get_folders_recursive($section_path);
 
-            foreach ($files as $file) {
+            foreach ($folders as $folder) {
                 // Remove APPPATH/views/ from path
-                $relative_path = str_replace(APPPATH . 'views/', '', $file);
-
-                // Split path into parts
-                $parts = explode('/', $relative_path);
-                $filename = array_pop($parts);
-                $name = str_replace(['.md', '.txt'], '', $filename);
-
-                // First part is always section, second is book
-                $book = isset($parts[1]) ? $parts[1] : $parts[0];
-
-                // If it's README.md, treat it as a folder (remove .md from the URL)
-                if (strtolower($name) === 'readme') {
-                    $relative_path = implode('/', $parts); // Just the folder path without README.md
-                }
-
+                $relative_path = str_replace(APPPATH . 'views/', '', $folder);
+                
+                // Add the folder to results
                 $results[] = [
                     'section' => $section,
                     'path' => $relative_path,
-                    'book' => $book,
-                    'name' => $name,
-                    'full_parts' => $parts, // for nested structure
                 ];
             }
         }
@@ -64,19 +48,19 @@ class Sitemap extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
-    private function get_files_recursive($dir)
+    private function get_folders_recursive($dir)
     {
-        $allFiles = [];
+        $allFolders = [];
         $items = scandir($dir);
         foreach ($items as $item) {
             if ($item === '.' || $item === '..') continue;
             $path = $dir . '/' . $item;
             if (is_dir($path)) {
-                $allFiles = array_merge($allFiles, $this->get_files_recursive($path));
-            } elseif (preg_match('/\.(md|txt)$/i', $item)) {
-                $allFiles[] = $path;
+                $allFolders[] = $path;
+                // Recursively scan subdirectories
+                $allFolders = array_merge($allFolders, $this->get_folders_recursive($path));
             }
         }
-        return $allFiles;
+        return $allFolders;
     }
 }
