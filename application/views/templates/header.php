@@ -7,7 +7,7 @@
     <title><?= isset($title) ? $title : 'Template by PaperCSS'; ?> - Paperari</title>
     <link href="<?= base_url('assets/img/paper_737804.png'); ?>" rel="icon" type="image/x-icon">
     <link href="<?= base_url('assets/css/paper.css'); ?>" rel="stylesheet">
-    <link href="<?= base_url('assets/css/style.css'); ?>" rel="stylesheet">
+    <link href="<?= base_url('assets/css/style.css'); ?>?v=1.0.1" rel="stylesheet">
   </head>
   <body>
     <div id="top" class="row site">

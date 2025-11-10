@@ -6,6 +6,21 @@
           <h3 class="sidebar-title" style="text-align:center;font-weight:bold;">ナビゲーション</h3>
           <div class="row">
             <div class="collapsible full-width">
+              <input id="collapsible-content" type="radio" name="collapsible" 
+							  <?= !isset($_COOKIE['access_token']) || $_COOKIE['access_token'] !== 'ok' ? 'checked' : '' ?>>
+              <label for="collapsible-content">Resources</label>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="https://www.freebsd.org/">The FreeBSD Project</a></li>
+                  <li><a href="https://www.debian.org/">Debian GNU/Linux</a></li>
+                  <li><a href="https://www.codeigniter.com/">CodeIgniter PHP Framework</a></li>
+                  <li><a href="https://flask.palletsprojects.com/en/stable/">Flask Web Framework</a></li>
+                  <li><a href="https://www.djangoproject.com/">Django Software Foundation</a></li>
+                </ul>
+              </div>
+            </div>					
+					  <?php if (isset($_COOKIE['access_token']) && $_COOKIE['access_token'] === 'ok'): ?>	
+            <div class="collapsible full-width">
               <input id="collapsible-components" type="radio" name="collapsible">
               <label for="collapsible-components">Sections</label>
               <div class="collapsible-body">
@@ -15,18 +30,7 @@
                   <li><a href="/tutorials/">Tutorials</a></li>
                 </ul>
               </div>
-            </div>
-            <div class="collapsible full-width">
-              <input id="collapsible-content" type="radio" name="collapsible">
-              <label for="collapsible-content">Resources</label>
-              <div class="collapsible-body">
-                <ul>
-                  <li><a href="https://www.freebsd.org/">The FreeBSD Project</a></li>
-                  <li><a href="https://www.debian.org/">Debian GNU/Linux</a></li>
-                  <li><a href="https://flask.palletsprojects.com/en/stable/">Flask Web Framework</a></li>
-                </ul>
-              </div>
-            </div>
+            </div>			
             <div class="collapsible full-width">
               <input id="collapsible-tags" type="radio" name="collapsible">
               <label for="collapsible-tags">Tags</label>
@@ -42,17 +46,17 @@
                   <a href="<?= site_url('search?q=web+novel') ?>" class="tag">Web Novel</a>
                 </div>
               </div>
-            </div>
-            <div class="full-width">
-              <label for="collapsible-search" class="sidebar-title"><br></label>
-              <!-- This is your search form -->
-              <div class="collapsible-body">
-                <form action="<?= site_url('search'); ?>" method="get">
-                  <input type="text" name="q" placeholder="Search..." class="paper-input" style="width: calc(100% - 20px); padding: 0.5em; margin-left: 20px;">
-                  <button type="submit" class="paper-btn" style="margin-top: 0.5em; margin-left: 20px;">Search</button>
-                </form>
-              </div>
-            </div>
+            </div>						
+						<div class="full-width">
+							<label for="collapsible-search" class="sidebar-title"><br></label>
+							<div class="collapsible-body">
+								<form action="<?= site_url('search'); ?>" method="get">
+									<input type="text" name="q" placeholder="Search..." class="paper-input" style="width: calc(100% - 20px); padding: 0.5em; margin-left: 20px;">
+									<button type="submit" class="paper-btn" style="margin-top: 0.5em; margin-left: 20px;">Search</button>
+								</form>
+							</div>
+						</div>
+						<?php endif; ?>						
           </div>
         </div>
       </div>
