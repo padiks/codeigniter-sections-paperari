@@ -24,7 +24,7 @@ class Auth extends CI_Controller {
         }
 
         if ($this->input->post('password')) {
-            $pw = $this->input->post('password');
+            $pw = strtolower($this->input->post('password'));
 
             if ($pw === $this->password) {
                 // Use CI cookie helper

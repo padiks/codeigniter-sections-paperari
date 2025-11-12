@@ -119,27 +119,30 @@ class Books extends CI_Controller {
         }
 
 				// --- BREADCRUMB LOGIC ---
-				$breadcrumb = [];
-				$path_segments = array_merge([$book], $current_segments);
+// --- BREADCRUMB LOGIC ---
+$breadcrumb = [];
+$path_segments = array_merge([$book], $current_segments);
 
-				if ($file_to_load && pathinfo($file_to_load, PATHINFO_EXTENSION) === 'md') {
-						$basename = basename($file_to_load, '.md');
-						if (strtolower($basename) !== 'readme') {
-								// Only append if it's not already the last segment
-								if (empty($current_segments) || end($current_segments) !== $basename) {
-										$path_segments[] = $basename;
-								}
-						}
-				}
+if ($file_to_load && pathinfo($file_to_load, PATHINFO_EXTENSION) === 'md') {
+    $basename = basename($file_to_load, '.md');
+    if (strtolower($basename) !== 'readme') {
+        // Only append if it's not already the last segment
+        if (empty($current_segments) || end($current_segments) !== $basename) {
+            $path_segments[] = $basename;
+        }
+    }
+}
 
-				foreach ($path_segments as $idx => $segment) {
-						$breadcrumb[] = [
-								'name' => ucfirst($segment),
-								'url'  => site_url(implode('/', array_slice($path_segments, 0, $idx + 1)))
-						];
-				}
+foreach ($path_segments as $idx => $segment) {
+    $breadcrumb[] = [
+        'name' => ucfirst(str_replace('-', ' ', $segment)), // Replace dashes with spaces
+        'url'  => site_url(implode('/', array_slice($path_segments, 0, $idx + 1)))
+    ];
+}
 
-				$data['breadcrumb'] = $breadcrumb;
+$data['breadcrumb'] = $breadcrumb;
+// --- BREADCRUMB LOGIC END ---
+
 				// --- BREADCRUMB LOGIC END ---
 
         // --- TITLE & MD PATH ---
