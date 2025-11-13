@@ -15,6 +15,7 @@ class Sitemap extends CI_Controller {
 
     public function index()
     {
+			
         $data['title'] = 'Sitemap';
         // Define your top-level sections manually
         $sections = ['books', 'tutorials', 'lyrics'];

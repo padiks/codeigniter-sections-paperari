@@ -21,6 +21,7 @@ class Search extends CI_Controller {
         $query = trim($this->input->get('q'));
         $results = [];
 
+				$data['title'] = 'Search Results';
         // Define your top-level sections manually
         $sections = ['books', 'tutorials', 'lyrics'];
 
