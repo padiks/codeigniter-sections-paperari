@@ -25,7 +25,7 @@
               <a class="paper-btn margin" href="<?= site_url() ?>books/">Books</a>
               <a class="paper-btn margin" href="<?= site_url() ?>sitemap/">Sitemap</a>							
               <a class="paper-btn margin" href="#" onclick="toggleTheme()">Theme</a>
-              <a href="https://github.com/padiks" target="_blank" class="paper-btn margin">Github</a>             
+              <a href="https://github.com/padiks/codeigniter-sections-paperari" target="_blank" class="paper-btn margin">Github</a>             
               <a class="paper-btn margin" href="<?= isset($_COOKIE['access_token']) && $_COOKIE['access_token'] === 'ok' ? site_url('logout') : site_url('login') ?>" 
                 title="<?= isset($_COOKIE['access_token']) && $_COOKIE['access_token'] === 'ok' ? 'Logout' : 'Login' ?>">
                 <?= isset($_COOKIE['access_token']) && $_COOKIE['access_token'] === 'ok' ? 'Logout' : 'Login' ?>
