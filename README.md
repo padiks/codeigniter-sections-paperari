@@ -61,16 +61,19 @@ It uses **[PaperCSS](https://www.papercss.com/)** template for a clean, minimal 
 
 ---
 
-## 3️⃣ Sections, Markdown & PHP Handling
+## 3️⃣ Sections & Markdown Handling
 
-* Define **multiple sections** by creating a folder under `/application/views/` (e.g., `Books/`, `Tutorials/`, `Lyrics/`).  
+* Define **multiple sections** by creating a folder under `/application/views/` (e.g., `books/`, `tutorials/`, `lyrics/`).  
 * Each folder contains:
 
   * Markdown files (`.md`) → auto-parsed as content.  
 
 * Nested folders (volumes, chapters) are fully supported.  
-* **Bookmark** is modular — it’s a standalone controller and view that can be placed anywhere in the app without interfering with other sections.
+* **Important:** After adding a new section folder, you must also define it in `Search.php` and `Sitemap.php` to include it in search results and the sitemap. For example:
 
+    $sections = ['books', 'tutorials', 'lyrics'];
+
+* **Bookmark** is modular — it’s a standalone controller and view that can be placed anywhere in the app without interfering with other sections.
 
 ---
 
