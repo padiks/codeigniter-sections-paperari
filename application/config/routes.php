@@ -110,6 +110,10 @@ $route['search'] = 'search';
  */
 $route['sitemap'] = 'sitemap';
 
+// Custom routes for bookmark
+$route['bookmark'] = 'bookmark';
+$route['bookmark/save'] = 'bookmark/save';
+
 /**
  * Catch-all route for nested book structure
  * Matches any URL with two or more segments.
