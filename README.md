@@ -1,6 +1,6 @@
-# Paperari (CI3 Lightweight Sections Library)
+# Paperari (CI3 Modular Sections Library)
 
-**Paperari** is a lightweight, **CodeIgniter 3** library project for organizing content in multiple sections such as **Books**, **Tutorials**, or **Lyrics**. It supports Markdown and PHP rendering, site-wide search, sitemap generation, and stateless password protection.
+**Paperari** is a lightweight, **CodeIgniter 3** library project for organizing content in multiple sections such as **Books**, **Tutorials**, or **Lyrics**. It supports Markdown and PHP rendering, site-wide search, sitemap generation, stateless password protection, and now includes a **Bookmark** feature for saving the URL of the page you are currently reading.
 
 It uses **[PaperCSS](https://www.papercss.com/)** template for a clean, minimal UI.
 
@@ -14,6 +14,7 @@ It uses **[PaperCSS](https://www.papercss.com/)** template for a clean, minimal 
 * Static folder for CSS, JS, and images.
 * Optional static/standalone pages without header/footer using `Page.php`.
 * Site-wide search and sitemap across all defined sections.
+* **Bookmark functionality**: save the URL of the page you are reading, overwrite the previous bookmark, and quickly go to it.
 * Stateless password protection using a single cookie (`access_token`).
 * Dark/light mode, clean Markdown rendering, and optional TOC/prev-next navigation.
 
@@ -30,15 +31,16 @@ It uses **[PaperCSS](https://www.papercss.com/)** template for a clean, minimal 
 
 ## 1️⃣ Controllers
 
-| Controller                    | Purpose                                                                      |
-| ----------------------------- | ---------------------------------------------------------------------------- |
-| `Books.php`                   | Handles sections like Books, Tutorials, Lyrics. Nested Markdown/PHP content. |
-| `Page.php`                    | Standalone PHP pages without header/footer (`/page/static/column`).          |
-| `Errors.php`                  | Custom 404 handler (`page_missing()`).                                       |
-| `Search.php`                  | Site-wide search page across all sections.                                   |
-| `Sitemap.php`                 | Sitemap page showing all sections and items.                                 |
-| `Auth.php`                    | Password-protects the site using a stateless cookie. The default             |
-|                               |   password is set to "q", and it can be changed in the `Auth.php` file.      |
+| Controller     | Purpose                                                                      |
+| -------------- | ---------------------------------------------------------------------------- |
+| `Books.php`    | Handles sections like Books, Tutorials, Lyrics. Nested Markdown/PHP content. |
+| `Page.php`     | Standalone PHP pages without header/footer (`/page/static/column`).          |
+| `Errors.php`   | Custom 404 handler (`page_missing()`).                                       |
+| `Search.php`   | Site-wide search page across all sections.                                   |
+| `Sitemap.php`  | Sitemap page showing all sections and items.                                 |
+| `Auth.php`     | Password-protects the site using a stateless cookie. The default             |
+|                | password is set to "q", and it can be changed in the `Auth.php` file.        |
+| `Bookmark.php` | Handles saving and retrieving a single URL bookmark. Modular and simple.     |
 
 ---
 
@@ -51,6 +53,8 @@ It uses **[PaperCSS](https://www.papercss.com/)** template for a clean, minimal 
 | `/`                   | `Books/index`         | Homepage / Table of contents.              |
 | `/search`             | `Search/index`        | Site-wide search.                          |
 | `/sitemap`            | `Sitemap/index`       | Sitemap showing all sections.              |
+| `/bookmark`           | `Bookmark/index`      | Show saved bookmark (input for URL).       |
+| `/bookmark/save`      | `Bookmark/save`       | Save or overwrite the bookmark.            |
 | `/(:any)/(.+)`        | `Books/view/$1/$2`    | Nested content (section → volume/chapter). |
 | `/(:any)`             | `Books/view/$1`       | Single section entry.                      |
 | `404_override`        | `Errors/page_missing` | Custom 404 page.                           |
@@ -66,12 +70,13 @@ It uses **[PaperCSS](https://www.papercss.com/)** template for a clean, minimal 
   * PHP files (`.php`) → auto-loaded as views.
 * `README.md` or `index.php` is auto-loaded as the default for a folder.
 * Nested folders (volumes, chapters) are fully supported.
+* **Bookmark** is modular — it’s a standalone controller and view that can be placed anywhere in the app without interfering with other sections.
 
 ---
 
 ## 4️⃣ Static Pages
 
-* Place a folder under `/application/views/staic/` (e.g., `column.php, calculator.php`).
+* Place a folder under `/application/views/static/` (e.g., `column.php, calculator.php`).
 * Access via (e.g., `/page/static/column` or `/page/static/calculator`).
 * Runs **without header/footer**, fully standalone.
 * Works consistently on Windows and Debian.
@@ -107,7 +112,18 @@ It uses **[PaperCSS](https://www.papercss.com/)** template for a clean, minimal 
 
 ---
 
-## 8️⃣ Visual & UI Features
+## 8️⃣ Bookmark Feature
+
+* **Save the page you are currently reading** with a single click.
+* Only **one URL** is stored at a time (`bookmark.md`), overwriting the previous one.
+* Input field automatically pre-fills the last saved URL and highlights it when clicked.
+* “Go to Bookmark” button takes you to the saved URL.
+* Fully modular — works independently of other sections and won’t break the library structure.
+* Gracefully fails if the file isn’t writable, without throwing errors.
+
+---
+
+## 9️⃣ Visual & UI Features
 
 * Clean, minimal **PaperCSS** design ([papercss.com](https://www.papercss.com/)).
 * Markdown syntax highlighting (PHP, code blocks).
@@ -116,11 +132,12 @@ It uses **[PaperCSS](https://www.papercss.com/)** template for a clean, minimal 
 
 ---
 
-## 9️⃣ Portability & Environment
+## 🔟 Portability & Environment
 
 * Works on **Windows 32-bit**, **modern Debian**, and portable hosts.
 * No database or session required.
 * Minimal setup: just copy the project and it works immediately.
+* Fully modular: adding or removing sections or features like Bookmark doesn’t break the app.
 
 ---
 
