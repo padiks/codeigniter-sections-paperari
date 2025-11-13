@@ -26,7 +26,7 @@ class Bookmark extends CI_Controller {
         $this->load->view('bookmark_list', $data);
     }
 
-    // Save a single bookmark (overwrite previous)
+		// Save a single bookmark (overwrite previous)
 		public function save() {
 				// Hardcode the target file
 				$bookmark_file = FCPATH . 'application/views/static/bookmark.md';
@@ -34,8 +34,8 @@ class Bookmark extends CI_Controller {
 				// Get the URL from POST input (the input field in your form)
 				$url = $this->input->post('url', true);
 
-				if ($url) {
-						// Overwrite bookmark.md with this URL
+				// Check if the file is writable before attempting to save
+				if ($url && is_writable($bookmark_file)) {
 						file_put_contents($bookmark_file, $url . PHP_EOL, LOCK_EX);
 				}
 
