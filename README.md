@@ -63,14 +63,14 @@ It uses **[PaperCSS](https://www.papercss.com/)** template for a clean, minimal 
 
 ## 3️⃣ Sections, Markdown & PHP Handling
 
-* Define **multiple sections** by creating a folder under `/application/views/` (e.g., `Books/`, `Tutorials/`, `Lyrics/`).
-* Each folder can contain:
+* Define **multiple sections** by creating a folder under `/application/views/` (e.g., `Books/`, `Tutorials/`, `Lyrics/`).  
+* Each folder contains:
 
-  * Markdown files (`.md`) → auto-parsed.
-  * PHP files (`.php`) → auto-loaded as views.
-* `README.md` or `index.php` is auto-loaded as the default for a folder.
-* Nested folders (volumes, chapters) are fully supported.
+  * Markdown files (`.md`) → auto-parsed as content.  
+
+* Nested folders (volumes, chapters) are fully supported.  
 * **Bookmark** is modular — it’s a standalone controller and view that can be placed anywhere in the app without interfering with other sections.
+
 
 ---
 
