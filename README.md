@@ -87,6 +87,7 @@ It uses **[PaperCSS](https://www.papercss.com/)** template for a clean, minimal 
 
 * Single cookie (`access_token = ok`) enables access.
 * Login page sets cookie; Logout clears it.
+* Default password is `"q"` — it can be changed in the `Auth.php` file.
 * No sessions or database needed.
 * Works across all pages, sections, and standalone static pages.
 
