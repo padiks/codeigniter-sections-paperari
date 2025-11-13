@@ -16,7 +16,7 @@
           <div class="demo-title">
             <div class="row flex-center">
               <div class="text-center">
-                <h1 class="fw-bold" title="ライトノベル図書館 Raito Noberu Toshokan">らいぶらり</h1>
+                <h1 class="fw-bold" title="図書館Toshokan - Paperari">らいぶらり</h1>
                 <h2 class="fw-bold" style="font-size: 1.5em" title="PaperCSS - the less formal CSS framework">ぺーぱしーえすえす ふれーむわーく</h2>
               </div>
             </div>

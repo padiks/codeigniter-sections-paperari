@@ -3,12 +3,12 @@
       </div>
       <div class="sm-12 md-4 col sidebar">
         <div class="paper">
-          <h3 class="sidebar-title" style="text-align:center;font-weight:bold;">ナビゲーション</h3>
+          <h3 class="sidebar-title" style="text-align:center;font-weight:bold;" title="Nabigēshon">ナビゲーション</h3>
           <div class="row">
             <div class="collapsible full-width">
               <input id="collapsible-content" type="radio" name="collapsible" 
 							  <?= !isset($_COOKIE['access_token']) || $_COOKIE['access_token'] !== 'ok' ? 'checked' : '' ?>>
-              <label for="collapsible-content">Resources</label>
+              <label for="collapsible-content" title="Risōsu">リソース</label>
               <div class="collapsible-body">
                 <ul>
                   <li><a href="https://www.freebsd.org/">The FreeBSD Project</a></li>
@@ -19,7 +19,7 @@
                 </ul>
               </div>
             </div>					
-					  <?php if (isset($_COOKIE['access_token']) && $_COOKIE['access_token'] === 'ok'): ?>	
+					  <?php if (isset($_COOKIE['access_token']) && $_COOKIE['access_token'] === 'ok'): ?>							
             <div class="collapsible full-width">
               <input id="collapsible-components" type="radio" name="collapsible">
               <label for="collapsible-components">Sections</label>
@@ -46,12 +46,45 @@
                   <a href="<?= site_url('search?q=web+novel') ?>" class="tag">Web Novel</a>
                 </div>
               </div>
-            </div>						
+            </div>
+						<div class="collapsible full-width">
+								<input id="collapsible-bookmark" type="radio" name="collapsible">
+								<label for="collapsible-bookmark">Bookmark</label>
+								<div class="collapsible-body">
+
+										<?php
+										// Read the bookmark file (if exists)
+										$bookmark_file = FCPATH . 'application/views/static/bookmark.md';
+										$saved_url = '';
+										if (file_exists($bookmark_file)) {
+												$saved_url = trim(file_get_contents($bookmark_file));
+										}
+										?>
+										<!-- Form to save a new bookmark -->
+										<form action="<?= site_url('bookmark/save'); ?>" method="post">
+												<input type="text" name="url" placeholder="しおり..." class="paper-input"
+															 style="width: calc(100% - 20px); padding: 0.5em; margin-left: 20px;"
+															 value="<?= htmlspecialchars($saved_url); ?>"
+													 onfocus="this.select();">
+												<button type="submit" class="paper-btn" style="margin-top: 0.5em; margin-left: 20px;">
+														Save Bookmark
+												</button>
+										</form>
+										<!-- Form to go to the saved bookmark -->
+										<?php if (!empty($saved_url)): ?>
+										<form action="<?= $saved_url; ?>" method="get" style="margin-top: 1em;">
+												<button type="submit" class="paper-btn" style="margin-left: 20px;">
+														Go to Bookmark
+												</button>
+										</form>
+										<?php endif; ?>
+								</div>
+						</div>
 						<div class="full-width">
-							<label for="collapsible-search" class="sidebar-title"><br></label>
+							<label for="collapsible-search" class="sidebar-title">&nbsp;</label>
 							<div class="collapsible-body">
 								<form action="<?= site_url('search'); ?>" method="get">
-									<input type="text" name="q" placeholder="Search..." class="paper-input" style="width: calc(100% - 20px); padding: 0.5em; margin-left: 20px;">
+									<input type="text" name="q" placeholder="けんさく..." class="paper-input" style="width: calc(100% - 20px); padding: 0.5em; margin-left: 20px;">
 									<button type="submit" class="paper-btn" style="margin-top: 0.5em; margin-left: 20px;">Search</button>
 								</form>
 							</div>
